@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trade Journal</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Trade Journal">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#131722">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACkElEQVR4nO3dQWrbQABA0brkBoFmWZIep+ftcUrptqfowlCK1V+beOyR5PeWhgiBvmcGj8Icnl/ePsC/fJx9A6yXOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEhPs29gLX58/nLyyevP71PuZD2MHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkA73P6np09fTrfBf3063y4db7shf6RE29Pf/PsfwLP6+7L4TMa2Qdh7HjYaNu11/rp3HwTX2v+bYtCmL9z+MHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkGzZz7Tckb/yT8Zu6ItjjndkcfllRyViWiGJY4IbDRvDry8O0vg1x8oXWVxuZBybWGRxOdMKaVgcW1lkcTkjB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQdh7HrY+8cKQGD2r//0h9/HI7qekd9h/H0dlnuaznER7//5lWSOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYP0KO+QnuWN0SUjB2lYHLc+8sKRGvdn5CCNXHMcv9zDz74wZswyfkF69lku6/H418m0QhLHBFtZvIuD5EewOTaxeBfHTCtfvJtWSOIgiYMkDpI4SOIgiYMkDpI4SBN+IbVBvxVGDpI4SOIgiYN0eH55m30PrJSRgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJg/QbAHVV6Ag6ttIAAAAASUVORK5CYII=">
+<style>
+:root{--bg:#f0f3fa;--card:#fff;--tx:#131722;--mut:#787b86;--bd:#e0e3eb;--blue:#2962ff;--red:#f23645;--inp:#f8f9fd;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#131722;--card:#1e222d;--tx:#d1d4dc;--mut:#787b86;--bd:#2a2e39;--inp:#131722}}
+:root[data-theme="dark"]{--bg:#131722;--card:#1e222d;--tx:#d1d4dc;--mut:#787b86;--bd:#2a2e39;--inp:#131722}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:520px;margin:0 auto;padding:20px 16px 40px}
+header{margin:4px 0 18px}
+h1{font-size:22px;font-weight:700;margin:0;letter-spacing:-.01em}
+header p{margin:3px 0 0;color:var(--mut);font-size:14px}
+.tabs{display:flex;border-bottom:1px solid var(--bd);margin-bottom:16px}
+.tabs button{flex:1;border:0;border-bottom:2px solid transparent;background:none;padding:11px;font:inherit;font-weight:600;color:var(--mut);cursor:pointer;margin-bottom:-1px}
+.tabs button.on{color:var(--tx);border-bottom-color:var(--blue)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:18px}
+.fld{margin-bottom:16px}
+label{display:block;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+select,input{width:100%;font:inherit;font-size:16px;color:var(--tx);padding:12px;border:1px solid var(--bd);border-radius:8px;background:var(--inp);appearance:none;-webkit-appearance:none}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--mut) 50%),linear-gradient(135deg,var(--mut) 50%,transparent 50%);background-position:calc(100% - 19px) 54%,calc(100% - 14px) 54%;background-size:5px 5px;background-repeat:no-repeat;padding-right:36px}
+input#tk{font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+select:focus,input:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px rgba(41,98,255,.2)}
+.dir{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dir button{padding:12px;border:1px solid var(--bd);border-radius:8px;background:var(--inp);font:inherit;font-weight:700;color:var(--mut);cursor:pointer}
+.dir button.on.L{background:var(--blue);border-color:var(--blue);color:#fff}
+.dir button.on.S{background:var(--red);border-color:var(--red);color:#fff}
+.sec{font-size:13px;font-weight:700;margin:22px 0 14px;padding-top:18px;border-top:1px solid var(--bd)}
+.save{width:100%;padding:14px;border:0;border-radius:8px;font:inherit;font-size:16px;font-weight:700;color:#fff;background:var(--blue);cursor:pointer;margin-top:6px}
+.save:active{opacity:.85}
+.msg{text-align:center;color:var(--mut);font-size:13px;min-height:18px;margin-top:12px}
+.row{display:flex;gap:8px;margin-bottom:12px}
+.row button{flex:1;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font:inherit;font-weight:600;cursor:pointer}
+.it{background:var(--card);border:1px solid var(--bd);border-left:3px solid var(--mut);border-radius:8px;padding:13px 14px;margin-bottom:10px}
+.it.Long{border-left-color:var(--blue)}.it.Short{border-left-color:var(--red)}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top b{font-size:17px}
+.pill{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-left:8px}
+.pill.Long{color:var(--blue)}.pill.Short{color:var(--red)}
+.x{border:0;background:none;color:var(--mut);font-size:13px;cursor:pointer}
+.ln{font-size:14px;color:var(--mut);margin-top:5px}.ln b{color:var(--tx);font-weight:600}
+.lg{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--mut);margin:12px 0 6px}
+.lg::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c,var(--blue))}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.tg{font-size:12px;font-weight:700;padding:3px 9px;border-radius:6px;background:var(--c);color:var(--t,#fff)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-size:14px;font-weight:600;color:var(--tx)}
+.chip input{position:absolute;opacity:0;width:0;height:0}
+.chip span{display:block;padding:9px 14px;border:1px solid var(--bd);border-radius:8px;background:var(--inp)}
+.chip input:checked+span{background:var(--c,var(--blue));border-color:var(--c,var(--blue));color:var(--t,#fff)}
+.chip input:focus-visible+span{box-shadow:0 0 0 3px rgba(41,98,255,.3)}
+.lh{display:flex;justify-content:space-between;align-items:baseline;margin:28px 0 10px;font-size:13px;font-weight:700}
+.lh span+span{color:var(--mut);font-weight:500}
+.hide{display:none}
+.empty{text-align:center;color:var(--mut);padding:36px 0}
+</style>
+</head>
+<body>
+<main>
+<header><h1>Trade Journal</h1><p>Entries, exits, and the reasons behind them.</p></header>
+<div class="tabs"><button id="tN" class="on">New Trade</button><button id="tL">Trade Log</button></div>
+
+<section id="vN"><div class="card">
+<div class="fld"><label>Ticker</label><input id="tk" placeholder="M2K" autocapitalize="characters" autocomplete="off"></div>
+<div class="fld"><label>Direction</label><div class="dir"><button type="button" data-d="Long" class="L">Long</button><button type="button" data-d="Short" class="S">Short</button></div></div>
+<div class="sec">Entry Reason</div>
+<div class="fld"><label>Liquidity Levels <span style="text-transform:none;letter-spacing:0;font-weight:400">· select all that apply</span></label><div id="lvl"></div></div>
+<div class="fld"><label>Price Action</label><select id="trg"></select></div>
+<div class="sec">Exit Reason</div>
+<div class="fld"><select id="ex"></select></div>
+<button class="save" id="save">Log Trade</button>
+<div class="msg" id="m1"></div>
+</div></section>
+
+<section id="vL" class="hide">
+<div class="lh"><span>Trade Log</span><span id="cnt"></span></div>
+<div class="row"><button id="xc">Export CSV</button><button id="cp">Copy CSV</button></div>
+<div class="msg" id="m2"></div>
+<div id="list"></div>
+</section>
+</main>
+<script>
+const G=(l,a)=>({l,a});
+const O={
+lvl:[G('Premarket',['Premarket High','Premarket Low','Premarket Average']),
+G('After-Hours',['After-Hours High','After-Hours Low','After-Hours Average']),
+G('Overnight',['Overnight High','Overnight Low','Overnight Average']),
+G('Previous Day',['Previous Day High','Previous Day Low','Previous Day Average']),
+G('Other',['VWAP'])],
+trg:[G('Bullish',['Swept Below & Reclaimed','Respected as Support','Broke Above & Retested']),
+G('Bearish',['Swept Above & Rejected','Respected as Resistance','Broke Below & Retested'])],
+ex:[G('Stop',['Stop Loss Hit','Breakeven Stop Hit','Stop Moved Too Tight','Trailing Stop Hit']),
+G('Target / Structure',['Take Profit Hit','Break of Structure'])]
+};
+const $=id=>document.getElementById(id);
+const fill=(id,g,p)=>{$(id).innerHTML='<option value="">'+p+'</option>'+g.map(x=>'<optgroup label="'+x.l+'">'+x.a.map(v=>'<option>'+v+'</option>').join('')+'</optgroup>').join('')};
+const LC={'Premarket':['#9c27b0','#fff'],'After-Hours':['#00bcd4','#131722'],'Overnight':['#7878ff','#fff'],'Previous Day':['#ff9800','#131722'],'Other':['#ff69b4','#131722']};
+const cs=k=>{const c=LC[k]||LC.Other;return '--c:'+c[0]+';--t:'+c[1]};
+const lvTag=x=>{const k=Object.keys(LC).find(k=>x.startsWith(k))||'Other';return '<span class="tg" style="'+cs(k)+'">'+esc(x)+'</span>'};
+$('lvl').innerHTML=O.lvl.map(g=>'<div class="lgrp" style="'+cs(g.l)+'"><div class="lg">'+g.l+'</div><div class="chips">'+g.a.map(v=>'<label class="chip"><input type="checkbox" value="'+v+'"><span>'+v.replace(g.l+' ','')+'</span></label>').join('')+'</div></div>').join('');fill('trg',O.trg,'Select Price Action');fill('ex',O.ex,'Select Exit Reason');
+let dir='';
+document.querySelectorAll('.dir button').forEach(b=>b.onclick=()=>{dir=b.dataset.d;document.querySelectorAll('.dir button').forEach(x=>x.classList.toggle('on',x===b))});
+const KEY='tj:entries';let E=[];
+try{E=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){E=[]}
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(E))}catch(e){$('m1').textContent='Unable to save in this browser. Export to keep your data.'}};
+function show(v){$('vN').classList.toggle('hide',v!=='N');$('vL').classList.toggle('hide',v!=='L');$('tN').classList.toggle('on',v==='N');$('tL').classList.toggle('on',v==='L');window.scrollTo(0,0)}
+$('tN').onclick=()=>show('N');$('tL').onclick=()=>show('L');
+$('save').onclick=()=>{
+  const sel=[...document.querySelectorAll('#lvl input:checked')].map(x=>x.value);
+  const e={id:Date.now(),date:new Date().toLocaleString(),ticker:$('tk').value.trim().toUpperCase(),direction:dir,level:sel.join(' + '),level_count:sel.length,entry_trigger:$('trg').value,exit_reason:$('ex').value};
+  if(!e.ticker||!e.direction||!e.level||!e.entry_trigger||!e.exit_reason){$('m1').textContent='Complete every field and select at least one level.';return}
+  E.unshift(e);persist();render();
+  $('tk').value='';dir='';document.querySelectorAll('.dir button').forEach(x=>x.classList.remove('on'));
+  ['trg','ex'].forEach(i=>$(i).selectedIndex=0);document.querySelectorAll('#lvl input').forEach(x=>x.checked=false);
+  $('m1').textContent='Trade logged. Total: '+E.length;
+};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function render(){
+  $('cnt').textContent=E.length+(E.length===1?' trade':' trades');
+  $('list').innerHTML=E.length?E.map(e=>'<div class="it '+esc(e.direction)+'"><div class="top"><div><b>'+esc(e.ticker)+'</b><span class="pill '+esc(e.direction)+'">'+esc(e.direction)+'</span></div><button class="x" data-id="'+e.id+'">Delete</button></div>'
+  +'<div class="ln"><b>Entry:</b> '+esc(e.entry_trigger)+'</div><div class="tags">'+(e.level||'').split(' + ').filter(Boolean).map(lvTag).join('')+'</div><div class="ln"><b>Exit:</b> '+esc(e.exit_reason)+'</div><div class="ln">'+esc(e.date)+'</div></div>').join(''):'<div class="empty">No trades logged yet.</div>';
+}
+$('list').onclick=ev=>{const id=ev.target.dataset&&ev.target.dataset.id;if(id&&confirm('Delete this trade?')){E=E.filter(e=>String(e.id)!==id);persist();render()}};
+const COLS=['date','ticker','direction','level','level_count','entry_trigger','exit_reason'];
+const csv=()=>[COLS.join(',')].concat(E.map(e=>COLS.map(c=>'"'+String(e[c]||'').replace(/"/g,'""')+'"').join(','))).join('\n');
+async function out(name,data){
+  if(!E.length){$('m2').textContent='Nothing to export yet.';return}
+  try{const d=await claude.use('downloads');if(d){await d.save({filename:name,data});$('m2').textContent='Export ready.';return}}catch(err){if(err&&err.code==='declined'){$('m2').textContent='Export cancelled.';return}}
+  try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data]));a.download=name;document.body.appendChild(a);a.click();a.remove();$('m2').textContent='Downloaded.';return}catch(e){}
+  try{await navigator.clipboard.writeText(data);$('m2').textContent='Copied to clipboard.'}catch(e){$('m2').textContent='Unable to export from this view.'}
+}
+$('xc').onclick=()=>out('trade-journal.csv',csv());
+$('cp').onclick=async()=>{if(!E.length){$('m2').textContent='Nothing to copy yet.';return}try{await navigator.clipboard.writeText(csv());$('m2').textContent='CSV copied. Paste into Sheets or Excel.'}catch(e){$('m2').textContent='Copy blocked by this browser.'}};
+render();
+</script>
+</body>
+</html>
